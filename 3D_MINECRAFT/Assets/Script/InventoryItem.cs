@@ -14,13 +14,15 @@ public class InventoryItem : MonoBehaviour
     /// <summary>
     /// 道具圖示
     /// </summary>
-    private Image imgProp;
-    
+    [HideInInspector]
+    public Image imgProp;
+
     /// <summary>
     /// 道具數量
     /// </summary>
-    private Text textProp;
-    private void Start()
+    [HideInInspector]
+    public Text textProp;
+    private void Awake()
     {
         imgProp = transform.Find("道具圖示").GetComponent<Image>();
         textProp = transform.Find("道具數量").GetComponent<Text>();
