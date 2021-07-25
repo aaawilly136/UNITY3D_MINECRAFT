@@ -4112,6 +4112,8 @@ MonoBehaviour:
   - {fileID: 619070380}
   - {fileID: 565205257}
   - {fileID: 801834293}
+  rangeBuildTerrain: 2.5
+  listUsingItem: []
 --- !u!4 &1336951883
 Transform:
   m_ObjectHideFlags: 0
