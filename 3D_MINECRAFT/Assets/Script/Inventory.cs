@@ -31,6 +31,7 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false; //隱藏滑鼠
         // 將道具欄放回原位並隱藏-避免隱藏物件導致的錯誤
         goInventory.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
         goInventory.SetActive(false);
@@ -47,7 +48,11 @@ public class Inventory : MonoBehaviour
     private void SwitvhInventory()
     {
         // 如果 按下E 道具就設定為相反的顯示狀態
-        if (Input.GetKeyDown(KeyCode.E)) goInventory.SetActive(!goInventory.activeInHierarchy);
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            goInventory.SetActive(!goInventory.activeInHierarchy);
+            Cursor.visible = goInventory.activeInHierarchy;
+        }
     }
     /// <summary>
     /// 添加道具:玩家吃到道具後呼叫
@@ -109,8 +114,9 @@ public class Inventory : MonoBehaviour
     /// <param name="prop"></param>
     private void UpdateItemData(int index, Prop prop, Item[] itemData, int count)
     {
-        itemData[index].goItem = prop.goProp;
-        itemData[index].count = count;
+        itemData[index].goItem = prop.goProp; //更新取得道具的道具物件
+        itemData[index].propType = prop.propType; //更新取得道具的道具類型
+        itemData[index].count = count; //更新取得道具的道具數量
     }
     private void ObjectPoolUsing(GameObject obProp)
     {

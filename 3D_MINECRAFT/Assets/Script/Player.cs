@@ -50,10 +50,11 @@ public class Player : MonoBehaviour
     #region 方法
     /// <summary>
     /// 採集:繪製射線並判定是否攻擊以及採集物件
+    /// 條件:判定裝備管理器、當前的物件類型
     /// </summary>
     private void collection()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !EquipmentManager.instance.usingTerrainObject)
         {
             //射線碰撞資訊
             RaycastHit hit;

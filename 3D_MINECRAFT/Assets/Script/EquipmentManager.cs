@@ -36,8 +36,12 @@ public class EquipmentManager : MonoBehaviour
     /// 顯示道具的位置:手部骨架內的物件
     /// </summary>
     private Transform traPropPosition;
+    /// <summary>
+    /// 是否使用地形物件
+    /// </summary>
+    [HideInInspector]
+    public bool usingTerrainObject;
 
-    private bool usingTerrainObject;
     private Transform playerCamera;
 
 
@@ -45,8 +49,17 @@ public class EquipmentManager : MonoBehaviour
     /// 使用過的道具物件資訊
     /// </summary>
     public List<GameObject> listUsingItem = new List<GameObject>();
+    /// <summary>
+    /// 此類別的實體
+    /// 欄位添加靜態修飾詞
+    /// 1.可以使用 類別.靜態物件 存取
+    /// 2.切換場景時此靜態欄位不會還原為預設值
+    /// </summary>
+    public static EquipmentManager instance;
     private void Start()
     {
+        instance = this; //將此類別保存至欄為內
+
         traSelectionOutline = GameObject.Find("選取邊框").transform;
         rectSelectionOutline = traSelectionOutline.GetComponent<RectTransform>();
         inventory = GameObject.Find("道具管理器").GetComponent<Inventory>();
@@ -162,12 +175,15 @@ public class EquipmentManager : MonoBehaviour
         for (int i = 0; i < listUsingItem.Count; i++) listUsingItem[i].SetActive(false);
 
         Item itemData = inventory.itemDataEquipment[indexEquipment];  //目前的道具資料
-        usingTerrainObject = false; //不是使用地形物件
+
+        //如果 道具不是地形物件類型 就 不是使用地形物件
+        if (itemData.propType != PropType.TerrainObject) usingTerrainObject = false;
+        //使用地形物件
+        else if (itemData.propType == PropType.TerrainObject) usingTerrainObject = true;
         
+        //如果有道具物件 才更新道具資訊
         if(itemData.goItem)
         {
-            usingTerrainObject = true; //使用地形物件
-            
             //判斷清單內的道具名稱 是否包含當前選取的道具名稱，例:草地(clone) 包含草地 就表示用過
             int count = listUsingItem.Where(x => x.name.Contains(itemData.goItem.name)).ToList().Count;
            
