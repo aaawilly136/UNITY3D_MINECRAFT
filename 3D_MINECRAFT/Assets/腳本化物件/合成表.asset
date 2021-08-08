@@ -18,7 +18,8 @@ MonoBehaviour:
     - {fileID: 2219682571367440916, guid: 7e929e4f2b9193242a33fd05c7958cb6, type: 3}
     - {fileID: 0}
     - {fileID: 0}
-    goMergeResult: {fileID: 0}
+    goMergeResult: {fileID: 2729271824978081006, guid: ef2763e057cd134489bc2c90af9942e6,
+      type: 3}
   - goMerge:
     - {fileID: 2219682571367440916, guid: 7e929e4f2b9193242a33fd05c7958cb6, type: 3}
     - {fileID: 2219682571367440916, guid: 7e929e4f2b9193242a33fd05c7958cb6, type: 3}
